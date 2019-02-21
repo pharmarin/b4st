@@ -1,18 +1,26 @@
-<footer class="container">
-  <hr/>
+<?php if (!isset($_GET['_app'])) : ?>
 
-	<div class="row">
-    <?php dynamic_sidebar('footer-widget-area'); ?>
-  </div>
+<?php b4st_footer_before();?>
 
-  <div class="row">
-    <div class="col">
-      <p class="text-center">&copy; <?php echo date('Y'); ?> <a href="<?php echo home_url('/'); ?>"><?php bloginfo('name'); ?></a></p>
+<footer id="footer" class="mt-5 bg-light">
+
+  <div class="container">
+
+    <?php if(is_active_sidebar('footer-widget-area')): ?>
+    <div class="row pt-5 pb-4" id="footer" role="navigation">
+      <?php dynamic_sidebar('footer-widget-area'); ?>
     </div>
+    <?php endif; ?>
+
   </div>
 
 </footer>
 
+<?php b4st_footer_after();?>
+
+<?php b4st_bottomline();?>
+
+<?php endif; //isset _app ?>
 
 <?php wp_footer(); ?>
 </body>
