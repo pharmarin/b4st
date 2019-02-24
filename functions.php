@@ -1,5 +1,7 @@
 <?php
 
+if ($_SERVER["HTTP_HOST"] === "localhost:80") remove_action('template_redirect', 'redirect_canonical');
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }

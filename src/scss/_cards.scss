@@ -1,0 +1,18 @@
+.card {
+  & .card-title {
+    font-weight: 600;
+  }
+
+  & .card-img {
+    &.wp-post-image {
+      max-height: 20rem;
+      object-fit: cover;
+    }
+  }
+
+  & .card-body {
+    & p {
+      margin-bottom: 0;
+    }
+  }
+}

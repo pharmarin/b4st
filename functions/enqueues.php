@@ -8,7 +8,7 @@ if ( ! function_exists('b4st_enqueues') ) {
 
 		// Styles
 
-		wp_register_style('bootstrap-css', get_stylesheet_directory_uri().'/bootstrap/dist/css/bootstrap.min.css', false, '4.1.3', null);
+		wp_register_style('bootstrap-css', get_stylesheet_directory_uri().'/theme/css/bootstrap.min.css', false, '4.1.3', null);
 		wp_enqueue_style('bootstrap-css');
 
 		wp_register_style('fontawesome5-css', 'https://use.fontawesome.com/releases/v5.4.1/css/all.css', false, '5.4.1', null);
@@ -25,14 +25,14 @@ if ( ! function_exists('b4st_enqueues') ) {
 		//La fonction supprime l'utilisation du fichier original de JQuery sur votre serveur
 		wp_deregister_script( 'jquery' );
 		//Elle enregistre alors le nouvel emplacement de JQuery, chargé depuis le CDN de Google
-		wp_register_script( 'jquery', ( 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js' ), false, null, true );
+		wp_register_script( 'jquery', ( 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js' ), false, null, true );
 		//La fonction charge JQuery
 		wp_enqueue_script( 'jquery' );
 
 		wp_register_script('popper',  'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', false, '1.14.3', true);
 		wp_enqueue_script('popper');
 
-		wp_register_script('bootstrap-js', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js', false, '4.1.3', true);
+		wp_register_script('bootstrap-js', get_stylesheet_directory_uri() . '/theme/js/bootstrap.min.js', false, '4.1.3', true);
 		wp_enqueue_script('bootstrap-js');
 
 		wp_register_script('b4st-js', get_template_directory_uri() . '/theme/js/b4st.js', false, null, true);

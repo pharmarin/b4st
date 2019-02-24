@@ -1,0 +1,14 @@
+// Applique la hauteur de l'image sur les cartes de la page d'accueil
+.has-post-thumbnail .card-img-top {
+  height: 7em;
+  object-fit: cover;
+}
+
+// Cards
+.card {
+  &.card-squarred:before{
+  	content: "";
+  	display: block;
+  	padding-top: 100%; 	/* initial ratio of 1:1*/
+  }
+}
