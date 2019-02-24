@@ -2,10 +2,10 @@
   font-weight: 500;
   border: none;
   padding: .3rem .75rem;
-  background-color: none;
+  background-color: transparent;
   background-size: 200% auto;
   background-position: left bottom;
-  transition: 0;
+  transition: background-position 0.5s;
 
   &:hover {
     background-position: right top;
@@ -16,7 +16,6 @@
   .btn-#{$color} {
     background-image: linear-gradient(45deg, $value 0%, lighten($value, 20%) 51%, $value 100%);
     color: color-yiq($value);
-    transition: 0.5s;
   }
 }
 
@@ -25,7 +24,6 @@
     position: relative;
     padding: calc(.3rem - #{$btn-border-width}) calc(.75rem - #{$btn-border-width});
     background-image: linear-gradient(45deg, $white 0%, $white 49%, $value 51%, lighten($value, 20%) 100%);
-    transition: 0.5s;
     background-clip: padding-box; /* !important */
     border: solid $btn-border-width transparent; /* !important */
     border-radius: $btn-border-radius;
@@ -52,8 +50,12 @@
     &:not(:disabled):not(.disabled):active,
     &:not(:disabled):not(.disabled).active {
       color: color-yiq($value);
-      background-image: linear-gradient(to right, $value 0%, lighten($value, 20%) 51%, $value 100%);
-      border-color: transparent;
+      background-image: linear-gradient(45deg, $value 0%, lighten($value, 20%) 51%, $value 100%);
+      border: solid $btn-border-width $white;
+
+      &:before {
+        background: transparent;
+      }
     }
   }
 }
@@ -63,9 +65,18 @@
   border-radius: $btn-border-radius;
   background-color: $gray-200;
 
-  & > .btn {
-    border: solid $btn-border-width $white;
-    transition: none;
+  & .btn {
+    &:not(:active):not(.active) {
+      border: solid $btn-border-width $white;
+
+      @each $color, $value in $theme-colors {
+        &.btn-outline-#{$color} {
+          &:hover:before {
+            background: transparent;
+          }
+        }
+      }
+    }
   }
 
   & > .btn:not(:last-child):not(.dropdown-toggle),

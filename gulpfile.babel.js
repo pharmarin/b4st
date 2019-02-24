@@ -18,7 +18,7 @@ const paths = {
     dest: 'theme/css/'
   },
   scripts: {
-    src: 'node_modules/bootstrap/js/dist/**/*.js', //'node_modules/bootstrap/js/src/**/*.js',
+    src: 'node_modules/bootstrap/dist/js/*.js', //'node_modules/bootstrap/js/dist/**/*.js', //'node_modules/bootstrap/js/src/**/*.js',
     dest: 'theme/js/'
   },
   customScripts: {

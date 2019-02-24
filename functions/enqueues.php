@@ -14,9 +14,6 @@ if ( ! function_exists('b4st_enqueues') ) {
 		wp_register_style('fontawesome5-css', 'https://use.fontawesome.com/releases/v5.4.1/css/all.css', false, '5.4.1', null);
 		wp_enqueue_style('fontawesome5-css');
 
-		wp_register_style('b4st-css', get_template_directory_uri() . '/theme/css/b4st.css', false, null);
-		wp_enqueue_style('b4st-css');
-
 		// Scripts
 
 		wp_register_script('modernizr',  'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', false, '2.8.3', true);
@@ -34,9 +31,6 @@ if ( ! function_exists('b4st_enqueues') ) {
 
 		wp_register_script('bootstrap-js', get_stylesheet_directory_uri() . '/theme/js/bootstrap.min.js', false, '4.1.3', true);
 		wp_enqueue_script('bootstrap-js');
-
-		wp_register_script('b4st-js', get_template_directory_uri() . '/theme/js/b4st.js', false, null, true);
-		wp_enqueue_script('b4st-js');
 
 		wp_register_script( 'rwdImageMaps', 'https://cdnjs.cloudflare.com/ajax/libs/jQuery-rwdImageMaps/1.6/jquery.rwdImageMaps.min.js', false, false, true );
 		wp_enqueue_script('rwdImageMaps');

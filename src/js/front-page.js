@@ -1,11 +1,19 @@
-jQuery(function () {
-  jQuery('.carousel').carousel({
-    interval: false,
-    keyboard: false,
-    wrap: false
+(function ($) {
+
+	'use strict';
+
+	$(document).ready(function() {
+
+    $('.carousel').carousel({
+      interval: false,
+      keyboard: false,
+      wrap: false
+    });
+    $('.carousel-toggle').on('change', function (event) {
+      console.log(event);
+      $('.carousel').carousel($(this).data("slide-to"));
+    })
+    
   });
-  jQuery('.carousel-toggle').on('change', function (event) {
-    console.log(event);
-    jQuery('.carousel').carousel(jQuery(this).data("slide-to"));
-  })
-})
+
+}(jQuery));
