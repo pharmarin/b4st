@@ -1,15 +1,22 @@
-.navbar-brand {
-  padding-left: 1em;
-  padding-right: 1em;
-  color: $white !important;
-  font-weight: 800;
-  border: none;
-  border-radius: 1em;
-  transition: 0.5s;
-  background-size: 200% auto;
-  background-image: linear-gradient(to right, theme-color("icon-primary") 0%, theme-color("icon-secondary") 51%, theme-color("icon-primary") 100%);
-}
+.navbar {
+  & .navbar-brand {
+    margin-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    color: $white !important;
+    font-weight: 800;
+    border: none;
+    border-radius: $btn-border-radius;
+    transition: 0.5s;
+    background-size: 200% auto;
+    background-image: linear-gradient(to right, theme-color("icon-primary") 0%, theme-color("icon-secondary") 51%, theme-color("icon-primary") 100%);
 
-.navbar-brand:hover {
-  background-position: right center;
+    &:hover {
+      background-position: right center;
+    }
+  }
+
+  & #searchform {
+    margin-top: 1rem;
+  }
 }
