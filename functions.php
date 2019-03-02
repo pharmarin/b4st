@@ -16,6 +16,7 @@ $includes = array(
 	'/pharmacie-render-blocks.php',
 	'/pharmacie-functions.php',
 	'/pharmacie-rest-api.php',
+	'/pharmacie-redirect.php',
 	'/languages.php'
 );
 

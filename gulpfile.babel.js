@@ -34,7 +34,7 @@ export const clean = () => del([ 'theme' ]);
 
 export function serverInit () {
   server.init({
-    proxy: "http://localhost:80/pharmacie",
+    proxy: "https://pharmacie.local",
     ghostMode: false,
     open: false,
     notify: false

@@ -37,35 +37,6 @@ function change_post_per_page ( $query ) {
 
 add_action( 'pre_get_posts', 'change_post_per_page', 1 );
 
-/* Rediriger les pages de base pour archives */
-add_filter( 'template_include', 'redirect_archives' );
-
-function redirect_archives ( $template ) {
-	if (is_404()) {
-		$taxonomies = get_taxonomies([
-			'show_in_rest' => true,
-			'_builtin' => false
-		]);
-		global $wp;
-		foreach ($taxonomies as $taxonomy) {
-			if ($wp->request == $taxonomy) {
-				$new_template = locate_template('taxonomy-template.php');
-				add_filter('document_title_parts', 'edit_archive_title', 10, 2);
-			}
-		}
-	}
-
-	if ($new_template) return $new_template;
-	return $template;
-}
-
-function edit_archive_title ( $title ) {
-	global $wp;
-	$taxonomy_name = $wp->request;
-	$taxonomy = get_taxonomy($taxonomy_name);
-	$title['title'] = $taxonomy->label;
-	return $title;
-}
 
 function array_debug ($array) {
   if (is_admin()) return;
