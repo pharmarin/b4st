@@ -17,6 +17,7 @@ $includes = array(
 	'/pharmacie-functions.php',
 	'/pharmacie-rest-api.php',
 	'/pharmacie-redirect.php',
+	'/pharmacie-dependencies.php',
 	'/languages.php'
 );
 

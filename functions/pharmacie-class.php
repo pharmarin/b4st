@@ -13,7 +13,7 @@ $includes = array(
 );
 
 foreach ( $includes as $file ) {
-	$filepath = locate_template( 'functions/class' . $file );
+	$filepath = locate_template( 'functions/pharmatheme-class' . $file );
 	if ( ! $filepath ) {
 		trigger_error( sprintf( 'Error locating class%s for inclusion', $file ), E_USER_ERROR );
 	}
