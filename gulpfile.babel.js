@@ -1,4 +1,5 @@
 import gulp from 'gulp';
+import log from 'fancy-log';
 import sass from 'gulp-sass';
 import sourcemaps from 'gulp-sourcemaps';
 import autoprefixer from 'gulp-autoprefixer';
@@ -9,6 +10,8 @@ import terser from 'gulp-terser';
 import rename from 'gulp-rename';
 import cleanCSS from 'gulp-clean-css';
 import del from 'del';
+import realFavicon from 'gulp-real-favicon';
+import fs from 'fs';
 import browserSync from 'browser-sync';
 const server = browserSync.create();
 
@@ -24,8 +27,14 @@ const paths = {
   customScripts: {
     src: 'src/js/*.js',
     dest: 'theme/js/'
+  },
+  favicons: {
+    src: 'src/images/icon.png',
+    dest: 'favicons/'
   }
 };
+
+var FAVICON_DATA_FILE = 'faviconData.json';
 
 /*
  * For small tasks you can export arrow functions
@@ -97,3 +106,72 @@ const build = gulp.series(clean, gulp.parallel(styles, scripts, customScripts));
 export const watch = gulp.parallel(serverInit, gulp.series(build, watchFiles));
 
 export default build;
+
+export function favicon () {
+  return Promise.resolve (
+    realFavicon.generateFavicon({
+  		masterPicture: paths.favicons.src,
+  		dest: paths.favicons.dest,
+  		iconsPath: '/favicons/',
+  		design: {
+  			ios: {
+  				pictureAspect: 'backgroundAndMargin',
+  				backgroundColor: '#ffffff',
+  				margin: '14%',
+  				assets: {
+  					ios6AndPriorIcons: true,
+  					ios7AndLaterIcons: true,
+  					precomposedIcons: true,
+  					declareOnlyDefaultIcon: true
+  				},
+  				appName: 'Pharmacie'
+  			},
+  			desktopBrowser: {},
+  			windows: {
+  				pictureAspect: 'whiteSilhouette',
+  				backgroundColor: '#17cebd',
+  				onConflict: 'override',
+  				assets: {
+  					windows80Ie10Tile: true,
+  					windows10Ie11EdgeTiles: {
+  						small: true,
+  						medium: true,
+  						big: true,
+  						rectangle: true
+  					}
+  				},
+  				appName: 'Pharmacie'
+  			},
+  			androidChrome: {
+  				pictureAspect: 'shadow',
+  				themeColor: '#17cebd',
+  				manifest: {
+  					name: 'Pharmacie',
+  					display: 'standalone',
+  					orientation: 'notSet',
+  					onConflict: 'override',
+  					declared: true
+  				},
+  				assets: {
+  					legacyIcon: false,
+  					lowResolutionIcons: false
+  				}
+  			},
+  			safariPinnedTab: {
+  				pictureAspect: 'silhouette',
+  				themeColor: '#17cebd'
+  			}
+  		},
+  		settings: {
+  			scalingAlgorithm: 'Mitchell',
+  			errorOnImageTooSmall: false,
+  			readmeFile: false,
+  			htmlCodeFile: true,
+  			usePathAsIs: false
+  		},
+  		markupFile: FAVICON_DATA_FILE
+  	}, function() {
+  		log("Favicon folder build");
+  	})
+  )
+}

@@ -15,6 +15,15 @@ function my_image_sizes($sizes) {
     return $newsizes;
 }
 
+add_filter ('site_icon_meta_tags', 'set_site_favicon');
+
+function set_site_favicon ($meta_tags) {
+  $html = file_get_contents(get_template_directory() . '/favicons/html_code.html');
+  $html = str_replace ("/favicons/", get_stylesheet_directory_uri() . "/favicons/", $html);
+  $html = preg_split("/[\n]+/", $html);
+  return $html;
+}
+
 function change_post_per_page ( $query ) {
     if ( is_admin() || ! $query->is_main_query() )
         return;
