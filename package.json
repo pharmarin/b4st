@@ -35,7 +35,7 @@
   },
   "name": "pharmatheme",
   "description": "Thème de mon blog sur la pharmacie. ",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "uri": "https://github.com/pharmarin/b4st.git",
   "main": "gulpfile.babel.js",
   "scripts": {
