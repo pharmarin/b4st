@@ -1,4 +1,7 @@
 export const paths = {
+  php: {
+    src: './**/*.php'
+  },
   styles: {
     src: './src/scss/**/*.scss',
     dest: './theme/css/'

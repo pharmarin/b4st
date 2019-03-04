@@ -1,22 +1,22 @@
 .navbar {
-  & .navbar-brand {
+  .navbar-brand {
+    background-image: linear-gradient(to right, theme-color('icon-primary') 0%, theme-color('icon-secondary') 51%, theme-color('icon-primary') 100%);
+    background-size: 200% auto;
+    border: 0;
+    border-radius: $btn-border-radius;
+    color: $white;// !important;
+    font-weight: 800;
     margin-top: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
-    color: $white !important;
-    font-weight: 800;
-    border: none;
-    border-radius: $btn-border-radius;
-    transition: 0.5s;
-    background-size: 200% auto;
-    background-image: linear-gradient(to right, theme-color("icon-primary") 0%, theme-color("icon-secondary") 51%, theme-color("icon-primary") 100%);
+    transition: .5s;
 
     &:hover {
       background-position: right center;
     }
   }
 
-  & #searchform {
+  form {
     margin-top: 1rem;
   }
 }

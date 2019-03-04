@@ -18,9 +18,8 @@ const server = browserSync.create();
 function initServer () {
   server.init({
     proxy: "https://pharmacie.local",
-    ghostMode: false,
-    open: false,
-    notify: false
+    //ghostMode: false,
+    //notify: false
   })
 }
 
@@ -47,7 +46,7 @@ function watchFiles() {
   log("Begin watching files")
   gulp.watch(paths.styles.src, () => {
     log("Change in styles")
-    gulp.series('build-styles', 'reload-server')()
+    gulp.series('build-css', 'reload-server')()
   });
   gulp.watch(paths.scripts.src, () => {
     log("Change in scripts")
@@ -60,9 +59,15 @@ function watchFiles() {
   gulp.watch("./*.php").on("change", server.reload);
 }
 
-gulp.task('watch', watchFiles)
+gulp.task('watch-files', watchFiles)
 
-gulp.task('build-all', gulp.parallel('build-styles', 'build-scripts', 'build-custom-scripts'))
+gulp.task('watch', gulp.parallel('watch-files', 'init-server'))
+
+gulp.task('build-css', gulp.series('lint-styles', 'build-styles'))
+gulp.task('build-js', gulp.series('lint-scripts', 'build-scripts'))
+gulp.task('build-custom-js', gulp.series('lint-custom-scripts', 'build-custom-scripts'))
+
+gulp.task('build-all', gulp.parallel('build-css', 'build-js', 'build-custom-js'))
 
 gulp.task('build', gulp.series('clean-folder', 'build-all'))
 

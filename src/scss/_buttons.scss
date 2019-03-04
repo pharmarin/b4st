@@ -1,11 +1,11 @@
 .btn {
-  font-weight: 500;
-  border: none;
-  padding: .3rem .75rem;
   background-color: transparent;
-  background-size: 200% auto;
   background-position: left bottom;
-  transition: background-position 0.5s;
+  background-size: 200% auto;
+  border: 0;
+  font-weight: 500;
+  padding: .3rem .75rem;
+  transition: background-position .5s;
 
   &:hover {
     background-position: right top;
@@ -21,21 +21,24 @@
 
 @each $color, $value in $theme-colors {
   .btn-outline-#{$color} {
-    position: relative;
-    padding: calc(.3rem - #{$btn-border-width}) calc(.75rem - #{$btn-border-width});
+    background-clip: padding-box; // Important
     background-image: linear-gradient(45deg, $white 0%, $white 49%, $value 51%, lighten($value, 20%) 100%);
-    background-clip: padding-box; /* !important */
-    border: solid $btn-border-width transparent; /* !important */
+    border: solid $btn-border-width transparent; // Important
     border-radius: $btn-border-radius;
+    padding: calc(.3rem - #{$btn-border-width}) calc(.75rem - #{$btn-border-width});
+    position: relative;
 
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0; right: 0; bottom: 0; left: 0;
-      z-index: -1;
-      margin: -$btn-border-width; /* !important */
-      border-radius: inherit; /* !important */
+    &::before {
       background: linear-gradient(to right, $value 0%, lighten($value, 20%) 100%);
+      border-radius: inherit; // Important
+      bottom: 0;
+      content: '';
+      left: 0;
+      margin: -$btn-border-width; // Important
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: -1;
     }
 
     &:hover {
@@ -49,11 +52,11 @@
 
     &:not(:disabled):not(.disabled):active,
     &:not(:disabled):not(.disabled).active {
-      color: color-yiq($value);
       background-image: linear-gradient(45deg, $value 0%, lighten($value, 20%) 51%, $value 100%);
       border: solid $btn-border-width $white;
+      color: color-yiq($value);
 
-      &:before {
+      &::before {
         background: transparent;
       }
     }
@@ -61,33 +64,29 @@
 }
 
 .btn-group {
-  padding: .2rem;
-  border-radius: $btn-border-radius;
   background-color: $gray-200;
+  border-radius: $btn-border-radius;
+  padding: .2rem;
 
-  & .btn {
-    &:not(:active):not(.active) {
-      border: solid $btn-border-width $white;
+  .btn:not(:active):not(.active) {
+    border: solid $btn-border-width $white;
 
-      @each $color, $value in $theme-colors {
-        &.btn-outline-#{$color} {
-          &:hover:before {
-            background: transparent;
-          }
-        }
+    @each $color, $value in $theme-colors {
+      &.btn-outline-#{$color}:hover::before {
+        background: transparent;
       }
     }
   }
 
-  & > .btn:not(:last-child):not(.dropdown-toggle),
+  > .btn:not(:last-child):not(.dropdown-toggle),
   > .btn-group:not(:last-child) > .btn {
     @include border-radius($btn-border-radius);
   }
 
-  & > .btn:not(:first-child),
+  > .btn:not(:first-child),
   > .btn-group:not(:first-child) > .btn {
-    margin-left: .25rem;
     @include border-radius($btn-border-radius);
+    margin-left: .25rem;
   }
 }
 
