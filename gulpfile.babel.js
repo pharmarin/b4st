@@ -4,6 +4,7 @@ import sass from 'gulp-sass';
 import sourcemaps from 'gulp-sourcemaps';
 import autoprefixer from 'gulp-autoprefixer';
 import babel from 'gulp-babel';
+import phplint from 'gulp-phplint';
 import plumber from 'gulp-plumber';
 import concat from 'gulp-concat';
 import terser from 'gulp-terser';
@@ -12,6 +13,7 @@ import cleanCSS from 'gulp-clean-css';
 import del from 'del';
 import realFavicon from 'gulp-real-favicon';
 import fs from 'fs';
+import semver from 'semver';
 import browserSync from 'browser-sync';
 const server = browserSync.create();
 
@@ -101,11 +103,56 @@ function watchFiles() {
   gulp.watch("./*.php").on("change", server.reload);
 }
 
-const build = gulp.series(clean, gulp.parallel(styles, scripts, customScripts));
+const build = gulp.series(clean, gulp.parallel(php, styles, scripts, customScripts));
 
 export const watch = gulp.parallel(serverInit, gulp.series(build, watchFiles));
 
 export default build;
+
+export const precommit = gulp.series(build, integrate);
+
+/**
+ * Version update to style.css from package.json
+ */
+
+// Parses the package.json file. We use this because its values
+// change during execution.
+var getPackageJSON = function() {
+  return JSON.parse(fs.readFileSync('./package.json', 'utf8'));
+};
+
+// Lint associated PHP files.
+export function php () {
+  return gulp.src('./**/*.php')
+    .pipe(phplint());
+}
+
+// Integration task. Bumps version and commits.
+// Tagging is separate.
+export function integrate () {
+  var pkg = getPackageJSON();
+  var banner = ['/*',
+  'Theme Name: ' + pkg.description,
+  'Theme URI: '+ pkg.uri,
+  'Author: '+ pkg.author,
+  'Version: '+ pkg.version,
+  'License: '+ pkg.license,
+  'License URI: '+ pkg.licenseuri,
+  '*/',
+  ''].join('\n');
+  return Promise.resolve (
+    fs.writeFile('./style.css', banner, (err) => {
+      if (err) throw err;
+      console.log('The file has been saved!');
+    })
+  )
+}
+
+/**
+ * Function that create favicons from source
+ * to different browsers and OSs.
+ * @return {Promise} Promise for gulp, write "Favicon folder build" when OK.
+ */
 
 export function favicon () {
   return Promise.resolve (
