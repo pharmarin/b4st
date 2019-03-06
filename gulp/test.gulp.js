@@ -28,7 +28,9 @@ gulp.task('lint-styles', lintStyles)
 
 
 function lintScripts () {
-  return log("Lint scripts")
+  return Promise.resolve(
+    log("Lint scripts")
+  )
   /*.pipe(eslint())
   // eslint.format() outputs the lint results to the console.
   .pipe(eslint.format())
@@ -40,7 +42,9 @@ gulp.task('lint-scripts', lintScripts)
 
 
 function lintCustomScripts () {
-  return log("Lint custom scripts")
+  return Promise.resolve(
+    log("Lint custom scripts")
+  )
   /*.pipe(eslint())
   // eslint.format() outputs the lint results to the console.
   .pipe(eslint.format())
