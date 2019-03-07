@@ -43,12 +43,13 @@
   },
   "name": "pharmatheme",
   "description": "Thème de mon blog sur la pharmacie. ",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "uri": "https://github.com/pharmarin/b4st.git",
   "main": "gulpfile.babel.js",
   "scripts": {
     "watch": "gulp watch",
-    "build": "gulp precommit && zip -r pharmatheme.zip * -x \"*/\\.*\" \"node_modules/*\" \"src/*\""
+    "build": "gulp precommit && zip -r pharmatheme.zip * -x \"*/\\.*\" \"node_modules/*\" \"src/*\"",
+    "version": "gulp update-version && git add -A"
   },
   "repository": {
     "type": "git",

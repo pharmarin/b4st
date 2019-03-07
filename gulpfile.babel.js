@@ -42,7 +42,6 @@ gulp.task('reload-server', reloadServer)
  */
 
 function watchFiles() {
-  gulp.series('build-all')
   log("Begin watching files")
   gulp.watch(paths.styles.src, () => {
     log("Change in styles")
@@ -61,7 +60,7 @@ function watchFiles() {
 
 gulp.task('watch-files', watchFiles)
 
-gulp.task('watch', gulp.parallel('watch-files', 'init-server'))
+gulp.task('watch', gulp.series('build-all', gulp.parallel('watch-files', 'init-server')))
 
 gulp.task('build-css', gulp.series('lint-styles', 'build-styles'))
 gulp.task('build-js', gulp.series('lint-scripts', 'build-scripts'))
