@@ -8,6 +8,22 @@
 </main><!-- /.container -->
 
 <?php
+  $data = [];
+  if (have_posts()) : while (have_posts()) : the_post();
+    $data[] = [
+      "id" => get_the_ID(),
+      "title" => [
+        "rendered" => get_the_title()
+      ],
+    ];
+  endwhile; endif;
+?>
+
+<script>
+  var data = <?php echo json_encode($data) ?>
+</script>
+
+<?php
     b4st_main_after();
     get_footer();
 ?>

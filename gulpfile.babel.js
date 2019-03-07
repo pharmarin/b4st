@@ -15,12 +15,13 @@ const server = browserSync.create();
  * @return {none}
  */
 
-function initServer () {
+function initServer (done) {
   server.init({
     proxy: "https://pharmacie.local",
     //ghostMode: false,
     //notify: false
   })
+  done()
 }
 
 gulp.task('init-server', initServer)
@@ -30,8 +31,9 @@ gulp.task('init-server', initServer)
  * @return {none}
  */
 
-function reloadServer () {
-  server.reload({ stream: true })
+function reloadServer (done) {
+  server.reload({ stream: false })
+  done()
 }
 
 gulp.task('reload-server', reloadServer)
@@ -42,20 +44,11 @@ gulp.task('reload-server', reloadServer)
  */
 
 function watchFiles() {
-  log("Begin watching files")
-  gulp.watch(paths.styles.src, () => {
-    log("Change in styles")
-    gulp.series('build-css', 'reload-server')()
-  });
-  gulp.watch(paths.scripts.src, () => {
-    log("Change in scripts")
-    gulp.series('build-scripts', 'reload-server')()
-  });
-  gulp.watch(paths.customScripts.src, () => {
-    log("Change in custom scripts")
-    gulp.series('build-custom-scripts', 'reload-server')()
-  });
-  gulp.watch("./*.php").on("change", server.reload);
+  gulp.watch(paths.styles.src, gulp.series('build-css', 'reload-server'))
+  gulp.watch(paths.scripts.src, gulp.series('build-scripts', 'reload-server'))
+  gulp.watch(paths.customScripts.src, gulp.series('build-custom-scripts', 'reload-server'))
+  gulp.watch(paths.react.watch, gulp.series('build-react', 'reload-server'))
+  gulp.watch("./*.php", gulp.series('reload-server'))
 }
 
 gulp.task('watch-files', watchFiles)

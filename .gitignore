@@ -26,4 +26,4 @@ node_modules/
 .DS_Store
 
 pharmatheme.zip
-/vendor/
+/src/js/react/api/settings.js

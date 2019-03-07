@@ -4,7 +4,7 @@
     background-size: 200% auto;
     border: 0;
     border-radius: $btn-border-radius;
-    color: $white;// !important;
+    color: $navbar-brand-color;
     font-weight: 800;
     margin-top: 1rem;
     padding-left: 1rem;
@@ -13,6 +13,7 @@
 
     &:hover {
       background-position: right center;
+      color: $navbar-brand-color;
     }
   }
 

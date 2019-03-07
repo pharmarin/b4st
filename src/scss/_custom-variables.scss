@@ -7,12 +7,15 @@ $theme-colors: (
   "icon-secondary": #0499f2
 );
 
+$btn-border-radius: 2rem;
+$btn-border-width: 3px;
+
 $headings-font-weight: 800;
+
+$input-border-radius: 2rem;
+$input-group-padding-horizontal: 1rem;
 
 $link-color: #6c757d;
 $link-hover-decoration: none;
 
-$btn-border-radius: 2rem;
-$btn-border-width: 3px;
-$input-border-radius: 2rem;
-$input-group-padding-horizontal: 1rem;
+$navbar-brand-color: #fff;

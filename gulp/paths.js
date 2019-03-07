@@ -15,18 +15,9 @@ export const paths = {
     dest: './theme/js/'
   },
   react: {
-    src: [
-      './src/js/react-app.js',
-      //'!./node_modules/**'
-    ],
-    dest: './theme/js/'
-  },
-  components: {
-    src: [
-      './src/js/react/*.js',
-      '!./node_modules/**'
-    ],
-    dest: './theme/js/react/'
+    src: './src/js/react/react-app.js',
+    dest: './theme/js/',
+    watch: './src/js/react/**/*.js'
   },
   favicons: {
     src: './src/images/icon.png',
