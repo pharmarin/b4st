@@ -43,7 +43,8 @@
   "main": "gulpfile.babel.js",
   "scripts": {
     "watch": "gulp watch",
-    "build": "gulp precommit && zip -r pharmatheme.zip * -x \"*/\\.*\" \"node_modules/*\" \"src/*\""
+    "build": "gulp precommit && zip -r pharmatheme.zip * -x \"*/\\.*\" \"node_modules/*\" \"src/*\"",
+    "version": "gulp update-version"
   },
   "repository": {
     "type": "git",
