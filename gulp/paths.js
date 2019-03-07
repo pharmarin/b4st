@@ -14,6 +14,20 @@ export const paths = {
     src: './src/js/*.js',
     dest: './theme/js/'
   },
+  react: {
+    src: [
+      './src/js/react-app.js',
+      //'!./node_modules/**'
+    ],
+    dest: './theme/js/'
+  },
+  components: {
+    src: [
+      './src/js/react/*.js',
+      '!./node_modules/**'
+    ],
+    dest: './theme/js/react/'
+  },
   favicons: {
     src: './src/images/icon.png',
     dest: './favicons/'

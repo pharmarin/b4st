@@ -1,0 +1,1 @@
+"use strict";!function(o){o(document).ready(function(){o(".carousel").carousel({interval:!1,keyboard:!1,wrap:!1}),o(".carousel-toggle").on("change",function(e){console.log(e),o(".carousel").carousel(o(this).data("slide-to"))})})}(jQuery);

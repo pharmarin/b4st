@@ -1,7 +1,12 @@
 import gulp from 'gulp';
 import babel from 'gulp-babel';
 import plumber from 'gulp-plumber';
+import browserify from 'browserify';
+import babelify from 'babelify';
+import source from "vinyl-source-stream";
+import buffer from 'vinyl-buffer';
 import rename from 'gulp-rename';
+import merge from 'merge-stream';
 import concat from 'gulp-concat';
 import fs from 'fs';
 import del from 'del';
@@ -78,6 +83,22 @@ function buildCustomScripts() {
 }
 
 gulp.task('build-custom-scripts', buildCustomScripts)
+
+/**
+ * Build React components
+ * @return {none}
+ */
+
+function buildReact () {
+  return browserify({ debug: true })
+    .transform(babelify.configure({ presets: ["@babel/preset-env", "@babel/react"] }))
+    .require(paths.react.src, { entry: true })
+    .bundle()
+    .pipe(source('react-app.js'))
+    .pipe(gulp.dest(paths.react.dest));
+}
+
+gulp.task('compile-react', buildReact)
 
 /**
  * Parses the package.json file. We use this because its values
