@@ -44,7 +44,7 @@
   "scripts": {
     "watch": "gulp watch",
     "build": "gulp precommit && zip -r pharmatheme.zip * -x \"*/\\.*\" \"node_modules/*\" \"src/*\"",
-    "version": "gulp update-version"
+    "version": "gulp update-version && git add -A"
   },
   "repository": {
     "type": "git",
