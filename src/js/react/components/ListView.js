@@ -1,7 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { RenderHTML } from './RenderHTML';
 
-export default class ListView extends React.Component {
+class ListView extends React.Component {
 
   constructor() {
     super()
@@ -11,7 +12,11 @@ export default class ListView extends React.Component {
   }
 
   _itemSelected (id) {
-    this.setState({ active: id })
+    this._currentSection = null
+    this.props.dispatch({
+      type: "SET_ACTIVE",
+      value: id
+    })
   }
 
   _isSection (item) {
@@ -37,7 +42,7 @@ export default class ListView extends React.Component {
     return (
       <li
         className={
-          item.id === this.state.active ?
+          item.id === this.props.activePost ?
            "list-group-item list-group-item-action active"
            : "list-group-item list-group-item-action"
         }
@@ -52,7 +57,6 @@ export default class ListView extends React.Component {
   }
 
   render () {
-    console.log("ListView Render", this.props)
     return (
       <ul className="list-group">
         {
@@ -67,3 +71,12 @@ export default class ListView extends React.Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  //console.log("MapState", state)
+  return {
+    activePost: state.appReducer.activePost
+  }
+}
+
+export default connect(mapStateToProps)(ListView)

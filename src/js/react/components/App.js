@@ -1,13 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ListView from './ListView';
-
-import Store from '../store/configureStore';
+import PostDetail from './PostDetail';
 
 class App extends React.Component {
-  constructor () {
-    super()
-  }
 
   componentDidMount () {
     this.props.dispatch ({
@@ -18,7 +14,7 @@ class App extends React.Component {
   }
 
   render () {
-    console.log("App Render", this.props)
+    //console.log("App Render", this.props)
     return (
       <div className="row">
         <div className="col-sm-4">
@@ -28,21 +24,20 @@ class App extends React.Component {
             : null
           }
         </div>
-        <div className="col-sm-8" style={{height: "100em"}}></div>
+        <div className="col-sm-8" style={{height: "100em"}}>
+          {
+            this.props.activePost ? <PostDetail /> : null
+          }
+        </div>
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log("MapState", state)
   return {
-    posts: state.aromaPosts,
-    isLoading: {
-      pharmacie: state.pharmaIsLoading,
-      aromatherapie: state.aromaIsLoading,
-      phytotherapie: state.phytoIsLoading
-    }
+    posts: state.apiReducer.aromaPosts,
+    activePost: state.appReducer.activePost
   }
 }
 

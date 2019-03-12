@@ -7,7 +7,7 @@ const initialState = {
   phytoPosts: [],
 }
 
-function apiActions (state = initialState, action) {
+function apiReducer (state = initialState, action) {
   switch (action.type) {
     case "LOADING_BEGIN":
       switch (action.postType) {
@@ -64,4 +64,4 @@ function apiActions (state = initialState, action) {
   }
 }
 
-export default apiActions
+export default apiReducer
