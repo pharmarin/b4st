@@ -59,6 +59,7 @@
     "@babel/register": "^7.0.0",
     "babel-loader": "^8.0.5",
     "gulp-phplint": "^0.9.0",
+    "react-dom": "^16.8.4",
     "react-redux": "^6.0.1",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6"

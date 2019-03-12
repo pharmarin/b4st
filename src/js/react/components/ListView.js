@@ -1,7 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { RenderHTML } from './RenderHTML';
 
-export default class ListView extends React.Component {
+class ListView extends React.Component {
 
   constructor() {
     super()
@@ -24,7 +25,7 @@ export default class ListView extends React.Component {
       }
     } else {
       return (
-        <li className="list-group-item disabled">
+        <li className="list-group-item disabled" key={this._currentSection}>
           {
             this._currentSection
           }
@@ -57,13 +58,22 @@ export default class ListView extends React.Component {
       <ul className="list-group">
         {
           this.props.data ? this.props.data.map((item, index) =>
-            {
-              return this._isSection(item) ?
+            (
+              this._isSection(item) ?
               [this._isSection(), this._renderItem(item, index)] : this._renderItem(item, index)
-            }
+            )
           ) : null
         }
       </ul>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  console.log("ListView MapState", state)
+  return {
+    posts: state.aromaPosts
+  }
+}
+
+export default connect(mapStateToProps)(ListView)

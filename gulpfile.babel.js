@@ -18,7 +18,10 @@ const server = browserSync.create();
 
 function initServer (done) {
   server.init({
-    proxy: "https://pharmacie.local",
+    server: {
+      index: "exemple.html"
+    }
+    //proxy: "https://pharmacie.local",
     //ghostMode: false,
     //notify: false
   })
