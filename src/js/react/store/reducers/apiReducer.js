@@ -3,7 +3,7 @@ const initialState = {
   aromaIsLoading: false,
   phytoIsLoading: false,
   pharmaPosts: [],
-  aromaPosts: postsData,
+  aromaPosts: [],
   phytoPosts: [],
 }
 

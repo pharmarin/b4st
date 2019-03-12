@@ -11,17 +11,9 @@ class App extends React.Component {
 
   componentDidMount () {
     this.props.dispatch ({
-      type: "LOADING_BEGIN",
-      postType: 'aromatherapie',
-      value: []
-    })
-  }
-
-  test (dispatch) {
-    dispatch ({
       type: "LOADING_SUCCESS",
       postType: 'aromatherapie',
-      value: []
+      value: postsData
     })
   }
 
@@ -36,7 +28,7 @@ class App extends React.Component {
             : null
           }
         </div>
-        <div className="col-sm-8" style={{height: "100em"}} onClick={() => this.test(this.props.dispatch)}></div>
+        <div className="col-sm-8" style={{height: "100em"}}></div>
       </div>
     )
   }

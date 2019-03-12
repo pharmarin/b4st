@@ -24,7 +24,7 @@ export default class ListView extends React.Component {
       }
     } else {
       return (
-        <li className="list-group-item disabled">
+        <li className="list-group-item disabled" key={this._currentSection}>
           {
             this._currentSection
           }
