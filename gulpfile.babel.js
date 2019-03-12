@@ -3,7 +3,8 @@ import HubRegistry from 'gulp-hub';
 import browserSync from 'browser-sync';
 import log from 'fancy-log';
 
-import { paths } from './gulp/paths.js';
+import { paths } from './gulp/paths';
+
 
 var hub = new HubRegistry(['gulp/*.js']);
 gulp.registry(hub);

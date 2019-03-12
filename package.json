@@ -30,7 +30,7 @@
     "react": "^16.8.4",
     "redux-devtools": "^3.5.0",
     "vinyl-buffer": "^1.0.1",
-    "vinyl-source-stream": "^2.0.0"
+    "vinyl-source-stream": "^2.0.0",
   },
   "name": "pharmatheme",
   "description": "Thème de mon blog sur la pharmacie. ",
@@ -38,9 +38,11 @@
   "uri": "https://github.com/pharmarin/b4st.git",
   "main": "gulpfile.babel.js",
   "scripts": {
+    "start": "gulp watch",
     "watch": "gulp watch",
     "build": "gulp precommit && zip -r pharmatheme.zip * -x \"*/\\.*\" \"node_modules/*\" \"src/*\"",
-    "version": "gulp update-version && git add -A"
+    "version": "gulp update-version && git add -A",
+    "webpack": "webpack-dev-server --progress --colors"
   },
   "repository": {
     "type": "git",
@@ -55,8 +57,10 @@
   "dependencies": {
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
+    "babel-loader": "^8.0.5",
     "gulp-phplint": "^0.9.0",
     "react-redux": "^6.0.1",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6"
   }
 }

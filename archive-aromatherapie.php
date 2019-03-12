@@ -20,7 +20,7 @@
 ?>
 
 <script>
-  var data = <?php echo json_encode($data) ?>
+  var postsData = <?php echo json_encode($data) ?>
 </script>
 
 <?php

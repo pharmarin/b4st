@@ -3,13 +3,11 @@ const initialState = {
   aromaIsLoading: false,
   phytoIsLoading: false,
   pharmaPosts: [],
-  aromaPosts: [],
+  aromaPosts: postsData,
   phytoPosts: [],
 }
 
 function apiActions (state = initialState, action) {
-  console.log("Action", action)
-  let nextState
   switch (action.type) {
     case "LOADING_BEGIN":
       switch (action.postType) {
