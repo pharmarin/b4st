@@ -64,5 +64,6 @@ gulp.task('build-react', gulp.series('compile-react'))
 gulp.task('build-all', gulp.parallel('build-css', 'build-js', 'build-custom-js', 'build-react'))
 
 gulp.task('build', gulp.series('clean-folder', 'build-all'))
+gulp.task('precommit', gulp.series('build'))
 
 gulp.task('test', gulp.series('phpTest'))
