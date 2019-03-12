@@ -30,7 +30,7 @@
     "react": "^16.8.4",
     "redux-devtools": "^3.5.0",
     "vinyl-buffer": "^1.0.1",
-    "vinyl-source-stream": "^2.0.0",
+    "vinyl-source-stream": "^2.0.0"
   },
   "name": "pharmatheme",
   "description": "Thème de mon blog sur la pharmacie. ",
