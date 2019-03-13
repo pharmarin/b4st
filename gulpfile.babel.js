@@ -18,7 +18,10 @@ const server = browserSync.create();
 
 function initServer (done) {
   server.init({
-    proxy: "https://pharmacie.local",
+    server: {
+      index: "exemple.html"
+    }
+    //proxy: "https://pharmacie.local",
     //ghostMode: false,
     //notify: false
   })
@@ -26,6 +29,17 @@ function initServer (done) {
 }
 
 gulp.task('init-server', initServer)
+
+function initWPServer (done) {
+  server.init({
+    proxy: "https://pharmacie.local",
+    //ghostMode: false,
+    //notify: false
+  })
+  done()
+}
+
+gulp.task('init-wp-server', initWPServer)
 
 /**
  * Reload BrowserSync server after change in files
@@ -55,6 +69,8 @@ function watchFiles() {
 gulp.task('watch-files', watchFiles)
 
 gulp.task('watch', gulp.series('build-all', gulp.parallel('watch-files', 'init-server')))
+
+gulp.task('watch-wp', gulp.series('build-all', gulp.parallel('watch-files', 'init-wp-server')))
 
 gulp.task('build-css', gulp.series('lint-styles', 'build-styles'))
 gulp.task('build-js', gulp.series('lint-scripts', 'build-scripts'))

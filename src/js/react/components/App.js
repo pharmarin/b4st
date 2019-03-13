@@ -16,18 +16,16 @@ class App extends React.Component {
   render () {
     //console.log("App Render", this.props)
     return (
-      <div className="row">
-        <div className="col-sm-4">
+      <div className="row app">
+        <div className="col-sm-4 card listview">
           {
             this.props.posts.length > 0 ?
             <ListView data={this.props.posts} />
             : null
           }
         </div>
-        <div className="col-sm-8" style={{height: "100em"}}>
-          {
-            this.props.activePost ? <PostDetail /> : null
-          }
+        <div className="col-sm-8 postdetail">
+          <PostDetail post={this.props.posts.find((item) => item.id === this.props.activePost)} />
         </div>
       </div>
     )

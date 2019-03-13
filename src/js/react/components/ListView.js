@@ -4,10 +4,38 @@ import { RenderHTML } from './RenderHTML';
 
 class ListView extends React.Component {
 
-  constructor() {
-    super()
-    this.state = {
-      active: null
+  constructor(props) {
+    super(props);
+
+    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+
+  /**
+   * Set the wrapper ref
+   */
+  setWrapperRef(node) {
+    this.wrapperRef = node;
+  }
+
+  /**
+   * Alert if clicked on outside of element
+   */
+  handleClickOutside(event) {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target) && this.props.activePost) {
+      this._currentSection = null
+      this.props.dispatch({
+        type: "SET_ACTIVE",
+        value: null
+      })
     }
   }
 
@@ -29,7 +57,7 @@ class ListView extends React.Component {
       }
     } else {
       return (
-        <li className="list-group-item disabled" key={this._currentSection}>
+        <li className="list-group-item section disabled" key={this._currentSection}>
           {
             this._currentSection
           }
@@ -58,16 +86,18 @@ class ListView extends React.Component {
 
   render () {
     return (
-      <ul className="list-group">
-        {
-          this.props.data ? this.props.data.map((item, index) =>
-            {
-              return this._isSection(item) ?
-              [this._isSection(), this._renderItem(item, index)] : this._renderItem(item, index)
-            }
-          ) : null
-        }
-      </ul>
+      <div ref={this.setWrapperRef}>
+        <ul className="list-group">
+          {
+            this.props.data ? this.props.data.map((item, index) =>
+              {
+                return this._isSection(item) ?
+                [this._isSection(), this._renderItem(item, index)] : this._renderItem(item, index)
+              }
+            ) : null
+          }
+        </ul>
+      </div>
     )
   }
 }

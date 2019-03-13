@@ -1,0 +1,37 @@
+.app {
+  max-height: 90vh;
+}
+
+.listview {
+  max-height: 100%;
+  overflow: auto;
+  padding: 0;
+
+  .list-group-item {
+    border-left: 0;
+    border-right: 0;
+
+    &.section {
+      background: lighten(desaturate(theme-color('primary'), 40%), 40%);
+      height: 1.75rem;
+      padding-bottom: 0;
+      padding-top: 0;
+      position: sticky;
+      top: -1px;
+      z-index: 100;
+    }
+
+    &:first-child {
+      border-top: 0;
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+
+.postdetail .card {
+  height: 100%;
+  overflow: auto;
+}
