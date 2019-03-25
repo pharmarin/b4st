@@ -21,7 +21,8 @@ import terser from 'gulp-terser';
 //Favicons
 import realFavicon from 'gulp-real-favicon';
 
-import { paths, FAVICON_DATA_FILE } from './paths.js';
+import { server } from './server'
+import { paths, FAVICON_DATA_FILE } from './paths';
 
 /**
  * Delete theme folder before build phase
@@ -50,6 +51,7 @@ function buildStyles() {
     }))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(paths.styles.dest))
+    .pipe(server.reload({ stream: true }))
 }
 
 gulp.task('build-styles', buildStyles)

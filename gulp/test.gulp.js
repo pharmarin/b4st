@@ -18,6 +18,10 @@ function lintPHP () {
 
 gulp.task('lint-php', lintPHP)
 
+/**
+ * Lint scss files
+ * @return {none}
+ */
 
 function lintStyles () {
   return gulp.src(paths.styles.src)
@@ -25,7 +29,6 @@ function lintStyles () {
 }
 
 gulp.task('lint-styles', lintStyles)
-
 
 function lintScripts () {
   return Promise.resolve(

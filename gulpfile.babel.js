@@ -18,17 +18,20 @@ const server = browserSync.create();
 
 function initServer (done) {
   server.init({
-    server: {
-      index: "exemple.html"
-    }
-    //proxy: "https://pharmacie.local",
-    //ghostMode: false,
+    proxy: "http://192.168.1.15/sites/pharmacie",
+    ghostMode: false,
     //notify: false
   })
   done()
 }
 
 gulp.task('init-server', initServer)
+
+/**
+ * Init BrowserSync for Wordpress
+ * @param  {Function} done async return for gulp
+ * @return {async completion}
+ */
 
 function initWPServer (done) {
   server.init({
@@ -82,4 +85,4 @@ gulp.task('build-all', gulp.parallel('build-css', 'build-js', 'build-custom-js',
 gulp.task('build', gulp.series('clean-folder', 'build-all'))
 gulp.task('precommit', gulp.series('build'))
 
-gulp.task('test', gulp.series('phpTest'))
+gulp.task('test', gulp.series('lint-php'))
